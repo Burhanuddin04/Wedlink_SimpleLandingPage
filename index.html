@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grown Technologies | A New Generation of Weddings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f7f7f5;
+        color: #1a1a1a;
+        scroll-behavior: smooth;
+      }
+      .text-gradient {
+        background-image: linear-gradient(to right, #eab308, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .bg-gradient-rose {
+        background-image: linear-gradient(to right, #f7d2b2, #f5a0a3);
+      }
+      .btn-primary {
+        @apply px-8 py-3 rounded-full font-medium transition-all duration-300 transform shadow-lg;
+        background-image: linear-gradient(to right, #eab308, #ec4899);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+      .input-waitlist {
+        @apply w-full md:w-80 px-4 py-3 rounded-full bg-white border border-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all;
+      }
+      .logo-text {
+        font-weight: 200;
+      }
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, #eab308, #ec4899);
+        width: 0%;
+        z-index: 9999;
+        transition: width 0.1s linear;
+      }
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: #1a1a1a;
+        color: white;
+        padding: 1rem;
+        border-radius: 50%;
+        display: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+      }
+      .back-to-top:hover {
+        transform: translateY(-5px);
+      }
+      .fade-in {
+        animation: fadeIn 1s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .pas-card {
+        @apply bg-white p-8 rounded-2xl flex flex-col items-center text-center shadow-lg transition-transform duration-300 transform;
+      }
+      .icon-container {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(to right, #f7d2b2, #f5a0a3);
+        transition: transform 0.3s ease-in-out;
+        margin-bottom: 1.5rem;
+      }
+      .pas-tab-content {
+        display: none;
+      }
+      .pas-tab-content.active {
+        display: flex;
+      }
+      .flow-step-visual {
+        @apply w-full md:w-1/2 flex items-center justify-center mb-8 md:mb-0;
+      }
+      .how-it-works-visual .line {
+        background-image: linear-gradient(to bottom, #d1d5db, #f7f7f5);
+      }
+      .how-it-works-visual .step-icon {
+        animation: popIn 0.5s ease-out forwards;
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .how-it-works-container {
+        @apply relative flex flex-col md:flex-row justify-center items-center w-full;
+      }
+      .how-it-works-item {
+        @apply relative flex flex-col items-center text-center flex-1 z-10 p-4 md:px-8;
+      }
+      .how-it-works-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -1rem;
+        width: 2rem;
+        height: 2px;
+        background-color: #d1d5db;
+        z-index: 0;
+      }
+      @media (max-width: 767px) {
+        .how-it-works-item:not(:last-child)::after {
+          right: 50%;
+          top: auto;
+          bottom: -2rem;
+          transform: translateX(50%);
+          height: 2rem;
+          width: 2px;
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-50 bg-f7f7f5/90 backdrop-blur-sm transition-colors duration-300"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <a href="#hero" class="text-3xl font-light logo-text tracking-wide">
+          <span class="text-gradient">Grown</span>
+          <span class="text-black">n</span>
+        </a>
+        <div class="space-x-4 flex items-center">
+          <div class="flex space-x-2">
+            <button
+              class="lang-btn text-gray-500 hover:text-gray-800 transition"
+              data-lang="en"
+            >
+              EN
+            </button>
+            <button
+              class="lang-btn text-gray-500 hover:text-gray-800 transition"
+              data-lang="hi"
+            >
+              HI
+            </button>
+            <button
+              class="lang-btn text-gray-500 hover:text-gray-800 transition"
+              data-lang="gu"
+            >
+              GU
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        class="min-h-screen flex flex-col justify-center items-center text-center py-20 md:py-0"
+      >
+        <h1
+          class="text-5xl md:text-7xl font-light tracking-tight leading-tight max-w-4xl text-black"
+          data-key="hero-title"
+        >
+          The Future of Wedding Experiences.
+        </h1>
+        <p
+          class="mt-6 text-x1 md:text-2xl font-light text-gray-600 max-w-3xl"
+          data-key="hero-subtitle"
+        >
+          A seamless digital platform that redefines how you connect with your
+          guests.
+        </p>
+        <div
+          class="mt-12 flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:space-x-4"
+        >
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="input-waitlist"
+            data-key="waitlist-placeholder"
+          />
+          <button class="btn-primary" data-key="waitlist-button">
+            Join Waitlist
+          </button>
+        </div>
+      </section>
+
+      <!-- Simplify the Chaos Section (Problem, Agitation, Solution) -->
+      <section id="pas" class="py-24">
+        <h2 class="text-4xl font-light text-center mb-12" data-key="pas-title">
+          Simplify the Chaos.
+        </h2>
+        <div class="bg-gray-100 rounded-3xl p-8 md:p-12">
+          <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+            <button
+              class="pas-tab-btn px-6 py-2 rounded-full font-medium transition-colors"
+              data-tab="problem"
+              data-key="pas-problem-title"
+            >
+              The Problem
+            </button>
+            <button
+              class="pas-tab-btn px-6 py-2 rounded-full font-medium transition-colors"
+              data-tab="agitation"
+              data-key="pas-agitation-title"
+            >
+              The Agitation
+            </button>
+            <button
+              class="pas-tab-btn px-6 py-2 rounded-full font-medium transition-colors"
+              data-tab="solution"
+              data-tab="solution"
+              data-key="pas-solution-title"
+            >
+              The Solution
+            </button>
+          </div>
+
+          <!-- Tab Content: The Problem -->
+          <div
+            id="problem"
+            class="pas-tab-content active fade-in flex-col md:flex-row items-center md:space-x-12"
+          >
+            <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
+              <div
+                class="w-full relative py-12 px-8 bg-gray-200 rounded-3xl text-center"
+              >
+                <i
+                  class="fas fa-exclamation-triangle text-6xl text-rose-500 mb-4"
+                ></i>
+                <h3
+                  class="text-2xl font-medium mb-2"
+                  data-key="pas-problem-short"
+                >
+                  Scattered Info.
+                </h3>
+                <p
+                  class="text-gray-600 text-lg leading-relaxed mt-2"
+                  data-key="pas-problem-desc"
+                >
+                  Fragmented information and endless questions from guests.
+                </p>
+              </div>
+            </div>
+            <div class="md:w-1/2 space-y-6 text-center md:text-left">
+              <h3
+                class="text-2xl font-medium"
+                data-key="pas-problem-long-title"
+              >
+                The Problem: Lost in a Sea of Data
+              </h3>
+              <p
+                class="text-gray-600 text-lg leading-relaxed"
+                data-key="pas-problem-long-desc"
+              >
+                Trying to coordinate details across emails, texts, and phone
+                calls leads to missed information and constant confusion for
+                your guests.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tab Content: The Agitation -->
+          <div
+            id="agitation"
+            class="pas-tab-content fade-in flex-col md:flex-row items-center md:space-x-12"
+          >
+            <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
+              <div
+                class="w-full relative py-12 px-8 bg-gray-200 rounded-3xl text-center"
+              >
+                <i class="fas fa-frown text-6xl text-amber-500 mb-4"></i>
+                <h3
+                  class="text-2xl font-medium mb-2"
+                  data-key="pas-agitation-short"
+                >
+                  Unnecessary Stress.
+                </h3>
+                <p
+                  class="text-gray-600 text-lg leading-relaxed mt-2"
+                  data-key="pas-agitation-desc"
+                >
+                  The stress takes you away from enjoying your special day.
+                </p>
+              </div>
+            </div>
+            <div class="md:w-1/2 space-y-6 text-center md:text-left">
+              <h3
+                class="text-2xl font-medium"
+                data-key="pas-agitation-long-title"
+              >
+                The Agitation: Missing Your Own Moment
+              </h3>
+              <p
+                class="text-gray-600 text-lg leading-relaxed"
+                data-key="pas-agitation-long-desc"
+              >
+                Instead of savoring every moment of your celebration, you're
+                buried in last-minute logistics and guest inquiries.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tab Content: The Solution -->
+          <div
+            id="solution"
+            class="pas-tab-content fade-in flex-col md:flex-row items-center md:space-x-12"
+          >
+            <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
+              <div
+                class="w-full relative py-12 px-8 bg-gray-200 rounded-3xl text-center"
+              >
+                <i class="fas fa-magic text-6xl text-emerald-500 mb-4"></i>
+                <h3
+                  class="text-2xl font-medium mb-2"
+                  data-key="pas-solution-short"
+                >
+                  Perfectly Organized.
+                </h3>
+                <p
+                  class="text-gray-600 text-lg leading-relaxed mt-2"
+                  data-key="pas-solution-desc"
+                >
+                  One elegant platform that handles everything effortlessly.
+                </p>
+              </div>
+            </div>
+            <div class="md:w-1/2 space-y-6 text-center md:text-left">
+              <h3
+                class="text-2xl font-medium"
+                data-key="pas-solution-long-title"
+              >
+                The Solution: An All-in-One Experience
+              </h3>
+              <p
+                class="text-gray-600 text-lg leading-relaxed"
+                data-key="pas-solution-long-desc"
+              >
+                We bring all your wedding communications into one beautiful,
+                easy-to-use platform, freeing you to focus on what truly
+                matters.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section (Redesigned) -->
+      <section id="how-it-works" class="py-24 text-center">
+        <h2
+          class="text-4xl font-light text-center mb-16 md:mb-24"
+          data-key="how-it-works-title"
+        >
+          How It Works.
+        </h2>
+        <div
+          class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8"
+        >
+          <!-- Step 1: Effortless Setup -->
+          <div class="flex flex-col items-center">
+            <div class="bg-gradient-rose p-6 rounded-full shadow-lg">
+              <i class="fas fa-check-circle text-3xl text-white"></i>
+            </div>
+            <p class="mt-4 font-medium max-w-xs" data-key="how-it-works-step1">
+              Effortless Setup
+            </p>
+          </div>
+
+          <!-- Arrow 1 -->
+          <div class="relative w-full md:w-auto h-8 md:h-auto">
+            <i
+              class="fas fa-arrow-down text-gray-400 text-2xl absolute left-1/2 top-0 transform -translate-x-1/2 md:hidden"
+            ></i>
+            <i
+              class="fas fa-arrow-right text-gray-400 text-2xl hidden md:block"
+            ></i>
+          </div>
+
+          <!-- Step 2: Personalized Invites -->
+          <div class="flex flex-col items-center">
+            <div class="bg-gradient-rose p-6 rounded-full shadow-lg">
+              <i class="fas fa-paper-plane text-3xl text-white"></i>
+            </div>
+            <p class="mt-4 font-medium max-w-xs" data-key="how-it-works-step2">
+              Personalized Invites
+            </p>
+          </div>
+
+          <!-- Arrow 2 -->
+          <div class="relative w-full md:w-auto h-8 md:h-auto">
+            <i
+              class="fas fa-arrow-down text-gray-400 text-2xl absolute left-1/2 top-0 transform -translate-x-1/2 md:hidden"
+            ></i>
+            <i
+              class="fas fa-arrow-right text-gray-400 text-2xl hidden md:block"
+            ></i>
+          </div>
+
+          <!-- Step 3: AI Communication Bot -->
+          <div class="flex flex-col items-center">
+            <div class="bg-gradient-rose p-6 rounded-full shadow-lg">
+              <i class="fas fa-robot text-3xl text-white"></i>
+            </div>
+            <p class="mt-4 font-medium max-w-xs" data-key="how-it-works-step3">
+              AI Communication Bot
+            </p>
+          </div>
+
+          <!-- Arrow 3 -->
+          <div class="relative w-full md:w-auto h-8 md:h-auto">
+            <i
+              class="fas fa-arrow-down text-gray-400 text-2xl absolute left-1/2 top-0 transform -translate-x-1/2 md:hidden"
+            ></i>
+            <i
+              class="fas fa-arrow-right text-gray-400 text-2xl hidden md:block"
+            ></i>
+          </div>
+
+          <!-- Step 4: Collect Photos -->
+          <div class="flex flex-col items-center">
+            <div class="bg-gradient-rose p-6 rounded-full shadow-lg">
+              <i class="fas fa-camera text-3xl text-white"></i>
+            </div>
+            <p class="mt-4 font-medium max-w-xs" data-key="how-it-works-step4">
+              Collect Photos with AI
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product Features Section (Tabs) -->
+      <section id="features" class="py-24">
+        <h2
+          class="text-4xl font-light text-center mb-12"
+          data-key="features-title"
+        >
+          The experience, simplified.
+        </h2>
+        <div class="bg-gray-100 rounded-3xl p-8 md:p-12">
+          <div
+            class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4 mb-8"
+          >
+            <button
+              class="tab-btn px-6 py-2 rounded-full font-medium transition-colors"
+              data-tab="invites"
+              data-key="tab-invites"
+            >
+              Invitations
+            </button>
+            <button
+              class="tab-btn px-6 py-2 rounded-full font-medium transition-colors"
+              data-tab="gallery"
+              data-key="tab-gallery"
+            >
+              AI Gallery
+            </button>
+            <button
+              class="tab-btn px-6 py-2 rounded-full font-medium transition-colors"
+              data-tab="whatsapp"
+              data-key="tab-whatsapp"
+            >
+              WhatsApp
+            </button>
+          </div>
+
+          <!-- Tab Content: Invitations -->
+          <div id="invites" class="tab-content active fade-in">
+            <div
+              class="flex flex-col md:flex-row md:space-x-12 items-center justify-center"
+            >
+              <div class="flow-step-visual">
+                <div class="w-full relative py-12 px-8 bg-gray-200 rounded-3xl">
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-user-plus text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-1-step-1"
+                    >
+                      Upload Guest List
+                    </p>
+                  </div>
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-calendar-alt text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-1-step-2"
+                    >
+                      Assign Guests to Events
+                    </p>
+                  </div>
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-envelope text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-1-step-3"
+                    >
+                      Send Personalized Invite via WhatsApp
+                    </p>
+                  </div>
+                  <div class="flow-step flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-mobile-alt text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-1-step-4"
+                    >
+                      Guest Receives Unique Link
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-1/2 space-y-6 mt-8 md:mt-0">
+                <h3 class="text-2xl font-medium" data-key="feature-1-title">
+                  The Personalized Invitation
+                </h3>
+                <p
+                  class="text-gray-600 text-lg leading-relaxed"
+                  data-key="feature-1-desc"
+                >
+                  We craft a unique digital invitation for every single guest.
+                  They receive a single, personalized link on WhatsApp with only
+                  the events they're invited to. It's thoughtful, exclusive, and
+                  eliminates confusion.
+                </p>
+                <p
+                  class="text-sm font-medium text-black/80 flex items-center"
+                  data-key="feature-1-benefit"
+                >
+                  <span class="mr-2 text-xl">&#10003;</span> Less Stress for You
+                  & Your Guests
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: AI Gallery -->
+          <div id="gallery" class="tab-content fade-in">
+            <div
+              class="flex flex-col-reverse md:flex-row md:space-x-12 items-center justify-center"
+            >
+              <div class="md:w-1/2 space-y-6">
+                <h3 class="text-2xl font-medium" data-key="feature-2-title">
+                  The AI Photo Gallery
+                </h3>
+                <p
+                  class="text-gray-600 text-lg leading-relaxed"
+                  data-key="feature-2-desc"
+                >
+                  Our AI automatically finds and curates all the pictures of a
+                  person, no matter who took them. Guests can simply upload a
+                  reference image and get every photo of themselves from the
+                  entire event.
+                </p>
+                <p
+                  class="text-sm font-medium text-black/80 flex items-center"
+                  data-key="feature-2-benefit"
+                >
+                  <span class="mr-2 text-xl">&#10003;</span> All Your Memories,
+                  Instantly Found
+                </p>
+              </div>
+              <div class="flow-step-visual mt-8 md:mt-0">
+                <div class="w-full relative py-12 px-8 bg-gray-200 rounded-3xl">
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-camera text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-2-step-1"
+                    >
+                      Guests Upload Photos
+                    </p>
+                  </div>
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-robot text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-2-step-2"
+                    >
+                      Our AI Scans for Faces
+                    </p>
+                  </div>
+                  <div class="flow-step flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-smile-beam text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-2-step-3"
+                    >
+                      Guest Accesses Their Album
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: WhatsApp -->
+          <div id="whatsapp" class="tab-content fade-in">
+            <div
+              class="flex flex-col md:flex-row md:space-x-12 items-center justify-center"
+            >
+              <div class="flow-step-visual">
+                <div class="w-full relative py-12 px-8 bg-gray-200 rounded-3xl">
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-calendar-check text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-3-step-1"
+                    >
+                      Automated RSVP & Reminders
+                    </p>
+                  </div>
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-bullhorn text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-3-step-2"
+                    >
+                      Real-Time Updates & Announcements
+                    </p>
+                  </div>
+                  <div class="flow-step mb-6 flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-headset text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-3-step-3"
+                    >
+                      Event Support & Lost and Found
+                    </p>
+                  </div>
+                  <div class="flow-step flex items-center">
+                    <span class="text-xl mr-4"
+                      ><i class="fa fa-camera-retro text-gray-500"></i
+                    ></span>
+                    <p
+                      class="text-sm md:text-base text-gray-700 font-medium"
+                      data-key="flow-3-step-4"
+                    >
+                      Direct Guest Engagement
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="md:w-1/2 space-y-6 mt-8 md:mt-0">
+                <h3 class="text-2xl font-medium" data-key="feature-3-title">
+                  The WhatsApp Connection
+                </h3>
+                <p
+                  class="text-gray-600 text-lg leading-relaxed"
+                  data-key="feature-3-desc"
+                >
+                  We tap into a channel your guests are already on to create a
+                  direct, personal, and instant line of communication. Every
+                  piece of information is delivered directly and seamlessly.
+                </p>
+                <p
+                  class="text-sm font-medium text-black/80 flex items-center"
+                  data-key="feature-3-benefit"
+                >
+                  <span class="mr-2 text-xl">&#10003;</span> All Communication
+                  in One Place
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Waitlist Call to Action Section -->
+      <section id="cta" class="py-24 text-center rounded-2xl md:rounded-3xl">
+        <h2
+          class="text-4xl md:text-5xl font-light leading-tight max-w-4xl mx-auto text-gradient"
+          data-key="cta-title"
+        >
+          The wedding you’ve always dreamed of, without the chaos.
+        </h2>
+        <p
+          class="mt-6 text-xl md:text-2xl font-light text-gray-600 max-w-3xl mx-auto"
+          data-key="cta-subtitle"
+        >
+          Join our waitlist for early access and redefine your wedding
+          experience.
+        </p>
+        <div
+          class="mt-12 flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:space-x-4 justify-center"
+        >
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="input-waitlist"
+            data-key="waitlist-placeholder"
+          />
+          <button class="btn-primary" data-key="waitlist-button">
+            Join Waitlist
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center space-y-4">
+        <a
+          href="https://growbharat.tech"
+          class="text-gray-200 hover:text-white transition"
+          >A product by Grow Bharat Technologies</a
+        >
+        <div
+          class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-8 text-sm"
+        >
+          <a
+            href="mailto:info@growbharat.tech"
+            class="hover:text-white transition"
+            >info@growbharat.tech</a
+          >
+          <a href="tel:+919426176252" class="hover:text-white transition"
+            >+91 94261 76252</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript for Language & UX -->
+    <script>
+      const translations = {
+        en: {
+          "hero-title": "The Future of Wedding Experiences.",
+          "hero-subtitle":
+            "A seamless digital platform that redefines how you connect with your guests.",
+          "waitlist-placeholder": "Your email address",
+          "waitlist-button": "Join Waitlist",
+          "pas-title": "Simplify the Chaos.",
+          "pas-problem-title": "The Problem",
+          "pas-problem-desc":
+            "Fragmented information and endless questions from guests.",
+          "pas-problem-short": "Scattered Info.",
+          "pas-problem-long-title": "The Problem: Lost in a Sea of Data",
+          "pas-problem-long-desc":
+            "Trying to coordinate details across emails, texts, and phone calls leads to missed information and constant confusion for your guests.",
+          "pas-agitation-title": "The Agitation",
+          "pas-agitation-desc":
+            "The stress takes you away from enjoying your special day.",
+          "pas-agitation-short": "Unnecessary Stress.",
+          "pas-agitation-long-title": "The Agitation: Missing Your Own Moment",
+          "pas-agitation-long-desc":
+            "Instead of savoring every moment of your celebration, you're buried in last-minute logistics and guest inquiries.",
+          "pas-solution-title": "The Solution",
+          "pas-solution-desc":
+            "One elegant platform that handles everything effortlessly.",
+          "pas-solution-short": "Perfectly Organized.",
+          "pas-solution-long-title": "The Solution: An All-in-One Experience",
+          "pas-solution-long-desc":
+            "We bring all your wedding communications into one beautiful, easy-to-use platform, freeing you to focus on what truly matters.",
+          "features-title": "The Experience, Simplified.",
+          "tab-invites": "Invitations",
+          "tab-gallery": "AI Gallery",
+          "tab-whatsapp": "WhatsApp",
+          "flow-1-step-1": "Upload Guest List",
+          "flow-1-step-2": "Assign Guests to Events",
+          "flow-1-step-3": "Send Personalized Invite via WhatsApp",
+          "flow-1-step-4": "Guest Receives Unique Link",
+          "feature-1-title": "The Personalized Invitation",
+          "feature-1-desc":
+            "We craft a unique digital invitation for every single guest. They receive a single, personalized link on WhatsApp with only the events they're invited to. It's thoughtful, exclusive, and eliminates confusion.",
+          "feature-1-benefit": "✓ Less Stress for You & Your Guests",
+          "flow-2-step-1": "Guests Upload Photos",
+          "flow-2-step-2": "Our AI Scans for Faces",
+          "flow-2-step-3": "Guest Accesses Their Album",
+          "feature-2-title": "The AI Photo Gallery",
+          "feature-2-desc":
+            "Our AI automatically finds and curates all the pictures of a person, no matter who took them. Guests can simply upload a reference image and get every photo of themselves from the entire event.",
+          "feature-2-benefit": "✓ All Your Memories, Instantly Found",
+          "flow-3-step-1": "Automated RSVP & Reminders",
+          "flow-3-step-2": "Real-Time Updates & Announcements",
+          "flow-3-step-3": "Event Support & Lost and Found",
+          "flow-3-step-4": "Direct Guest Engagement",
+          "feature-3-title": "The WhatsApp Connection",
+          "feature-3-desc":
+            "We tap into a channel your guests are already on to create a direct, personal, and instant line of communication. Every piece of information is delivered directly and seamlessly.",
+          "feature-3-benefit": "✓ All Communication in One Place",
+          "cta-title":
+            "The wedding you’ve always dreamed of, without the chaos.",
+          "cta-subtitle":
+            "Join our waitlist for early access and redefine your wedding experience.",
+          "footer-text-1": "A product by",
+          "how-it-works-title": "How It Works.",
+          "how-it-works-step1": "Effortless Setup",
+          "how-it-works-step2": "Personalized Invites",
+          "how-it-works-step3": "AI Communication Bot",
+          "how-it-works-step4": "AI Powered Gallery",
+        },
+        hi: {
+          "hero-title": "वेडिंग गेस्ट एक्सपीरियंस का भविष्य।",
+          "hero-subtitle":
+            "एक निर्बाध डिजिटल प्लेटफ़ॉर्म जो आपके मेहमानों से जुड़ने के तरीके को फिर से परिभाषित करता है।",
+          "waitlist-placeholder": "आपका ईमेल पता",
+          "waitlist-button": "वेटलिस्ट में शामिल हों",
+          "pas-title": "गड़बड़ी को सरल बनाएं।",
+          "pas-problem-title": "समस्या",
+          "pas-problem-desc":
+            "अटकी हुई जानकारी, छूटे हुए अपडेट, और मेहमानों से अंतहीन सवाल।",
+          "pas-problem-short": "अटकी हुई जानकारी।",
+          "pas-problem-long-title": "समस्या: डेटा के सागर में खो जाना",
+          "pas-problem-long-desc":
+            "ईमेल, टेक्स्ट और फोन कॉल पर विवरणों को समन्वयित करने का प्रयास करने से जानकारी छूट जाती है और आपके मेहमानों के लिए लगातार भ्रम पैदा होता है।",
+          "pas-agitation-title": "परेशानी",
+          "pas-agitation-desc":
+            "सब कुछ प्रबंधित करने का तनाव आपको अपने खास दिन का आनंद लेने से दूर रखता है।",
+          "pas-agitation-short": "अनावश्यक तनाव।",
+          "pas-agitation-long-title": "परेशानी: अपना खुद का पल खोना",
+          "pas-agitation-long-desc":
+            "अपने उत्सव के हर पल का स्वाद लेने के बजाय, आप अंतिम-मिनट के रसद और मेहमानों की पूछताछ में दबे रहते हैं।",
+          "pas-solution-title": "समाधान",
+          "pas-solution-desc":
+            "एक सुंदर प्लेटफ़ॉर्म जो सब कुछ आसानी से संभालता है।",
+          "pas-solution-short": "पूरी तरह से संगठित।",
+          "pas-solution-long-title": "समाधान: एक सर्व-समावेशी अनुभव",
+          "pas-solution-long-desc":
+            "हम आपके सभी वेडिंग संचार को एक सुंदर, उपयोग में आसान प्लेटफॉर्म में लाते हैं, जिससे आप वास्तव में महत्वपूर्ण बातों पर ध्यान केंद्रित कर सकते हैं।",
+          "features-title": "अनुभव, सरलीकृत।",
+          "tab-invites": "निमंत्रण",
+          "tab-gallery": "एआई गैलरी",
+          "tab-whatsapp": "व्हाट्सएप",
+          "flow-1-step-1": "गेस्ट लिस्ट अपलोड करें",
+          "flow-1-step-2": "मेहमानों को इवेंट्स को सौंपें",
+          "flow-1-step-3": "व्हाट्सएप से व्यक्तिगत निमंत्रण भेजें",
+          "flow-1-step-4": "मेहमान को अद्वितीय लिंक प्राप्त होता है",
+          "feature-1-title": "व्यक्तिगत निमंत्रण",
+          "feature-1-desc":
+            "हम हर एक मेहमान के लिए एक अद्वितीय डिजिटल निमंत्रण बनाते हैं। उन्हें व्हाट्सएप पर एक ही, व्यक्तिगत लिंक मिलता है जिसमें केवल वे ही इवेंट्स होते हैं जिनमें उन्हें आमंत्रित किया जाता है। यह विचारशील, अनन्य और भ्रम को समाप्त करता है।",
+          "feature-1-benefit": "✓ आपके और आपके मेहमानों के लिए कम तनाव",
+          "flow-2-step-1": "मेहमान तस्वीरें अपलोड करते हैं",
+          "flow-2-step-2": "हमारा एआई चेहरों के लिए स्कैन करता है",
+          "flow-2-step-3": "मेहमान अपनी एल्बम तक पहुंच प्राप्त करते हैं",
+          "feature-2-title": "एआई फोटो गैलरी",
+          "feature-2-desc":
+            "हमारा एआई स्वचालित रूप से किसी व्यक्ति की सभी तस्वीरों को ढूंढता और क्यूरेट करता है, चाहे उन्हें किसी ने भी खींचा हो। मेहमान बस एक संदर्भ छवि अपलोड कर सकते हैं और पूरे कार्यक्रम से अपनी हर तस्वीर पा सकते हैं।",
+          "feature-2-benefit": "✓ आपकी सभी यादें, तुरंत मिल गईं",
+          "flow-3-step-1": "स्वचालित RSVP और रिमाइंडर",
+          "flow-3-step-2": "रीयल-टाइम अपडेट और घोषणाएं",
+          "flow-3-step-3": "इवेंट सपोर्ट और खोया-पाया",
+          "flow-3-step-4": "प्रत्यक्ष अतिथि जुड़ाव",
+          "feature-3-title": "व्हाट्सएप कनेक्शन",
+          "feature-3-desc":
+            "हम एक ऐसे चैनल का उपयोग करते हैं जिस पर आपके मेहमान पहले से ही हैं ताकि एक सीधा, व्यक्तिगत और तत्काल संचार लाइन बनाई जा सके। हर जानकारी सीधे और निर्बाध रूप से पहुंचाई जाती है।",
+          "feature-3-benefit": "✓ सभी संचार एक ही स्थान पर",
+          "cta-title":
+            "वह शादी जिसका आपने हमेशा सपना देखा था, बिना किसी अराजकता के।",
+          "cta-subtitle":
+            "जल्दी पहुंच के लिए हमारी वेटलिस्ट में शामिल हों और अपने शादी के अनुभव को फिर से परिभाषित करें।",
+          "footer-text-1": "GrowBharatTechnologies का एक उत्पाद",
+          "how-it-works-title": "यह कैसे काम करता है।",
+          "how-it-works-step1": "सरल सेटअप",
+          "how-it-works-step2": "व्यक्तिगत निमंत्रण",
+          "how-it-works-step3": "एआई संचार बॉट",
+          "how-it-works-step4": "तस्वीरें एकत्र करें",
+        },
+        gu: {
+          "hero-title": "લગ્નના મહેમાન અનુભવોનું ભવિષ્ય.",
+          "hero-subtitle":
+            "એક સીમલેસ ડિજિટલ પ્લેટફોર્મ જે તમારા મહેમાનો સાથે જોડાવાની રીતને ફરીથી વ્યાખ્યાયિત કરે છે.",
+          "waitlist-placeholder": "તમારું ઇમેઇલ સરનામું",
+          "waitlist-button": "વેઇટલિસ્ટમાં જોડાઓ",
+          "pas-title": "અરાજકતાને સરળ બનાવો.",
+          "pas-problem-title": "સમસ્યા",
+          "pas-problem-desc":
+            "વિખરાયેલી માહિતી, ચૂકી ગયેલા અપડેટ્સ અને મહેમાનો તરફથી અનંત પ્રશ્નો.",
+          "pas-problem-short": "વિખરાયેલી માહિતી.",
+          "pas-problem-long-title": "સમસ્યા: ડેટાના સાગરમાં ખોવાઈ જવું",
+          "pas-problem-long-desc":
+            "ઇમેઇલ, ટેક્સ્ટ અને ફોન કોલ્સ પર વિગતોનું સંકલન કરવાનો પ્રયાસ કરવાથી માહિતી ચૂકી જાય છે અને તમારા મહેમાનો માટે સતત મૂંઝવણ ઊભી થાય છે.",
+          "pas-agitation-title": "હેરાનગતિ",
+          "pas-agitation-desc":
+            "તે બધું મેનેજ કરવાનો તણાવ તમને તમારા ખાસ દિવસનો આનંદ માણવાથી દૂર રાખે છે.",
+          "pas-agitation-short": "અનાવશ્યક તણાવ.",
+          "pas-agitation-long-title": "હેરાનગતિ: તમારી પોતાની ક્ષણ ગુમાવવી",
+          "pas-agitation-long-desc":
+            "તમારા ઉત્સવની દરેક ક્ષણનો સ્વાદ માણવાને બદલે, તમે છેલ્લી ઘડીની લોજિસ્ટિક્સ અને મહેમાનોની પૂછપરછમાં દટાયેલા રહો છો.",
+          "pas-solution-title": "ઉકેલ",
+          "pas-solution-desc":
+            "એક ભવ્ય પ્લેટફોર્મ જે બધું જ સરળતાથી સંભાળે છે.",
+          "pas-solution-short": "સંપૂર્ણપણે સંગઠિત.",
+          "pas-solution-long-title": "ઉકેલ: એક સર્વ-સમાવેશક અનુભવ",
+          "pas-solution-long-desc":
+            "અમે તમારા તમામ લગ્ન સંદેશાવ્યવહારને એક સુંદર, ઉપયોગમાં સરળ પ્લેટફોર્મમાં લાવીએ છીએ, જેથી તમે ખરેખર શું મહત્વનું છે તેના પર ધ્યાન કેન્દ્રિત કરી શકો.",
+          "features-title": "અનુભવ, સરળ બનાવેલ.",
+          "tab-invites": "આમંત્રણો",
+          "tab-gallery": "એઆઈ ગેલેરી",
+          "tab-whatsapp": "વોટ્સએપ",
+          "flow-1-step-1": "મહેમાન સૂચિ અપલોડ કરો",
+          "flow-1-step-2": "મહેમાનોને ઇવેન્ટ્સને સોંપો",
+          "flow-1-step-3": "વોટ્સએપ દ્વારા વ્યક્તિગત આમંત્રણ મોકલો",
+          "flow-1-step-4": "મહેમાનને અનન્ય લિંક પ્રાપ્ત થાય છે",
+          "feature-1-title": "વ્યક્તિગત આમંત્રણ",
+          "feature-1-desc":
+            "અમે દરેક એક મહેમાન માટે એક અનોખું ડિજિટલ આમંત્રણ બનાવીએ છીએ. તેમને વોટ્સએપ પર એક જ, વ્યક્તિગત લિંક મળે છે જેમાં ફક્ત તે ઇવેન્ટ્સ હોય છે જેમાં તેમને આમંત્રણ આપવામાં આવે છે. તે વિચારશીલ, વિશિષ્ટ અને ગૂંચવણ દૂર કરે છે.",
+          "feature-1-benefit": "✓ તમારા અને તમારા મહેમાનો માટે ઓછો તણાવ",
+          "flow-2-step-1": "મહેમાનો ફોટા અપલોડ કરે છે",
+          "flow-2-step-2": "અમારું એઆઈ ચહેરાઓ માટે સ્કેન કરે છે",
+          "flow-2-step-3": "મહેમાન તેમના આલ્બમ સુધી પહોંચ મેળવે છે",
+          "feature-2-title": "એઆઈ ફોટો ગેલેરી",
+          "feature-2-desc":
+            "અમારું એઆઈ આપમેળે કોઈ વ્યક્તિના તમામ ચિત્રોને શોધે છે અને ક્યુરેટ કરે છે, ભલે તે કોઈએ પણ લીધા હોય. મહેમાનો ફક્ત એક સંદર્ભ છબી અપલોડ કરી શકે છે અને સમગ્ર ઇવેન્ટમાંથી પોતાની દરેક તસવીર મેળવી શકે છે.",
+          "feature-2-benefit": "✓ તમારી બધી યાદો, તરત જ મળી",
+          "flow-3-step-1": "સ્વચાલિત RSVP અને રિમાઇન્ડર",
+          "flow-3-step-2": "રીયલ-ટાઇમ અપડેટ્સ અને જાહેરાતો",
+          "flow-3-step-3": "ઇવેન્ટ સપોર્ટ અને ખોવાઈ ગયેલી-મળી ગયેલી વસ્તુઓ",
+          "flow-3-step-4": "પ્રત્યક્ષ મહેમાન જોડાણ",
+          "feature-3-title": "વોટ્સએપ કનેક્શન",
+          "feature-3-desc":
+            "અમે એક એવા ચેનલનો ઉપયોગ કરીએ છીએ જેના પર તમારા મહેમાનો પહેલાથી જ છે જેથી એક સીધી, વ્યક્તિગત અને ત્વરિત સંચાર લાઇન બનાવી શકાય. દરેક માહિતી સીધી અને અવરોધ વિના પહોંચાડવામાં આવે છે.",
+          "feature-3-benefit": "✓ તમામ સંદેશાવ્યવહાર એક જ જગ્યાએ",
+          "cta-title":
+            "જે લગ્નનું તમે હંમેશા સપનું જોયું હતું, તે હવે અરાજકતા વિના.",
+          "cta-subtitle":
+            "ઝડપી પ્રવેશ માટે અમારી વેઇટલિસ્ટમાં જોડાઓ અને તમારા લગ્ન અનુભવને ફરીથી વ્યાખ્યાયિત કરો.",
+          "footer-text-1": "GrowBharatTechnologies દ્વારા એક ઉત્પાદન",
+        },
+      };
+
+      function switchLanguage(lang) {
+        document.querySelectorAll("[data-key]").forEach((element) => {
+          const key = element.getAttribute("data-key");
+          const translation = translations[lang][key];
+          if (translation !== undefined) {
+            element.innerHTML = translation;
+          }
+        });
+        document
+          .querySelectorAll('input[data-key="waitlist-placeholder"]')
+          .forEach((input) => {
+            const key = input.getAttribute("data-key");
+            const translation = translations[lang][key];
+            if (translation !== undefined) {
+              input.placeholder = translation;
+            }
+          });
+      }
+
+      // UX Functionality
+      window.addEventListener("scroll", () => {
+        // Scroll Progress
+        const scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const progress = (scrollTop / scrollHeight) * 100;
+        document.getElementById("scroll-progress").style.width = progress + "%";
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById("back-to-top");
+        if (scrollTop > 300) {
+          backToTopBtn.style.display = "block";
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      });
+
+      document.getElementById("back-to-top").addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Tab Switching for Features Section
+      document.querySelectorAll(".tab-btn").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((btn) =>
+              btn.classList.remove("bg-gray-300", "text-black")
+            );
+          document
+            .querySelectorAll(".tab-content")
+            .forEach((content) => content.classList.remove("active"));
+
+          event.target.classList.add("bg-gray-300", "text-black");
+          const tabId = event.target.dataset.tab;
+          document.getElementById(tabId).classList.add("active");
+        });
+      });
+
+      // Tab Switching for PAS Section
+      document.querySelectorAll(".pas-tab-btn").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          document
+            .querySelectorAll(".pas-tab-btn")
+            .forEach((btn) =>
+              btn.classList.remove("bg-gray-300", "text-black")
+            );
+          document
+            .querySelectorAll(".pas-tab-content")
+            .forEach((content) => content.classList.remove("active"));
+
+          event.target.classList.add("bg-gray-300", "text-black");
+          const tabId = event.target.dataset.tab;
+          document.getElementById(tabId).classList.add("active");
+        });
+      });
+
+      // Set initial language and active tab
+      document.addEventListener("DOMContentLoaded", () => {
+        switchLanguage("en");
+        document.querySelector('.tab-btn[data-tab="invites"]').click();
+        document.querySelector('.pas-tab-btn[data-tab="problem"]').click();
+      });
+
+      // Language buttons
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const lang = event.target.getAttribute("data-lang");
+          switchLanguage(lang);
+        });
+      });
+    </script>
+  </body>
+</html>
